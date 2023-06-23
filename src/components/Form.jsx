@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-function Form(){
+function Form({ patients, setPatients }){
 
     const [name, setName] = useState('');
     const [owner, setOwner] = useState('');
@@ -11,11 +11,23 @@ function Form(){
     const handleSubmit = (e) =>{
         e.preventDefault();
         if([name,owner,email,date,detail].includes('')){
-            console.log("Se tiene al menos un Campo vacio")
             setError(true)
             return;
         }
         setError(false)
+        const patient = {
+            name,
+            owner,
+            email,
+            date,
+            detail,
+        }
+        setPatients([...patients, patient]);
+        setName('');
+        setOwner('');
+        setEmail('');
+        setDate('');
+        setDetail('');
     }
     return (
         <div className='md:w-1/2 lg:w-2/5 px-5 mx-5'>
