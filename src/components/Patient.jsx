@@ -1,36 +1,50 @@
-function Patient(props) {
+function Patient({patient, setPatient}) {
+    const {name, owner, email, date, detail} = patient
     return (
         <div className='bg-white shadow-xl rounded-lg px-5 py-10 mb-5'>
             <p className='font-bold text-gray-600 mb-2 uppercase'>
-                Nombre:{''}
+                Nombre:{' '}
                 <span className='font-normal normal-case'>
-                        Hook
-                    </span>
+                    {name}
+                </span>
             </p>
             <p className='font-bold text-gray-600 mb-2 uppercase'>
-                Propietario:{''}
+                Propietario:{' '}
                 <span className='font-normal normal-case'>
-                        Alvaro
-                    </span>
+                    {owner}
+                </span>
             </p>
             <p className='font-bold text-gray-600 mb-2 uppercase'>
-                Email:{''}
+                Email:{' '}
                 <span className='font-normal normal-case'>
-                        correo@correo.com
-                    </span>
+                    {email}
+                </span>
             </p>
             <p className='font-bold text-gray-600 mb-2 uppercase'>
-                Fecha de Alta:{''}
+                Fecha de Alta:{' '}
                 <span className='font-normal normal-case'>
-                        10/12/2021
-                    </span>
+                    {date}
+                </span>
             </p>
             <p className='font-bold text-gray-600 mb-2 uppercase'>
-                Síntomas:{''}
+                Síntomas:{' '}
                 <span className='font-normal normal-case'>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi corporis culpa dolor dolore dolorem enim ex excepturi facere laudantium maxime natus non optio, porro, quam qui quibusdam quos reprehenderit voluptates.
-                    </span>
+                    {detail}
+                </span>
             </p>
+            <div className='flex justify-between mt-5'>
+                <button
+                    type='button'
+                    onClick={()=>setPatient(patient)}
+                    className='px-10 py-2 bg-green-500 hover:bg-green-400 font-bold uppercase text-white rounded-lg'>
+                    Editar
+                </button>
+                <button
+                    type='button'
+                    className='px-10 py-2 bg-red-500 hover:bg-red-400 font-bold uppercase text-white rounded-lg'>
+                    Eliminar
+                </button>
+            </div>
         </div>
     );
 }

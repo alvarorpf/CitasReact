@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import Error from "./Error.jsx";
 function Form({ patients, setPatients }){
 
     const [name, setName] = useState('');
@@ -8,6 +9,12 @@ function Form({ patients, setPatients }){
     const [detail, setDetail] = useState('');
 
     const [error, setError] = useState(false);
+
+    const generateId = () => {
+        const random = Math.random().toString(36).substring(2)
+        const date = Date.now().toString(36)
+        return random + date
+    }
     const handleSubmit = (e) =>{
         e.preventDefault();
         if([name,owner,email,date,detail].includes('')){
@@ -16,6 +23,7 @@ function Form({ patients, setPatients }){
         }
         setError(false)
         const patient = {
+            id: generateId(),
             name,
             owner,
             email,
@@ -37,7 +45,7 @@ function Form({ patients, setPatients }){
                 <span className='text-indigo-700 font-bold'>Administralos</span>
             </p>
             <form onSubmit={handleSubmit} action="" className='bg-white shadow-xl rounded-lg px-5 py-10 mb-5'>
-                {error && <div className='bg-red-800 text-white text-center p-3 uppercase font-bold mb-2 rounded'><p>Todos los campos son Obligatorios !</p></div>}
+                {error && <Error> Todos los campos son obligatorios!!</Error>}
                 <div className='mb-2'>
                     <label htmlFor='name' className='block text-gray-600 uppercase font-bold'>
                         Nombre Mascota

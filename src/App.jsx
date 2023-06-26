@@ -7,6 +7,7 @@ import PatientList from "./components/PatientList.jsx";
 function App() {
 
     const [patients, setPatients] = useState([]);
+    const [patient, setPatient] = useState([]);
 
     return (
         <div className="container mx-auto mt-10">
@@ -17,7 +18,10 @@ function App() {
                     patients={patients}
                     setPatients={setPatients}
                 />
-                <PatientList />
+                <PatientList
+                    patients={patients}
+                    setPatient={setPatient}
+                />
             </div>
         </div>
     )
