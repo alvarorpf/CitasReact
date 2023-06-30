@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import Error from "./Error.jsx";
-function Form({ patients, setPatients, patient}){
+function Form({ patients, setPatients, patient, setPatient}){
     const [name, setName] = useState('');
     const [owner, setOwner] = useState('');
     const [email, setEmail] = useState('');
@@ -30,15 +30,23 @@ function Form({ patients, setPatients, patient}){
             return;
         }
         setError(false)
-        const patient = {
-            id: generateId(),
+        let objPatient = {
             name,
             owner,
             email,
             date,
             detail,
         }
-        setPatients([...patients, patient]);
+        if(patient.id){
+            objPatient.id = patient.id
+            const patientUpdate = patients.map(patientState => patientState.id === patient.id ? objPatient : patientState)
+            setPatients(patientUpdate)
+            setPatient({})
+        }
+        else{
+            objPatient.id = generateId()
+            setPatients([...patients, objPatient]);
+        }
         setName('');
         setOwner('');
         setEmail('');

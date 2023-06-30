@@ -1,5 +1,5 @@
 import Patient from "./Patient.jsx";
-function PatientList({patients, setPatient}) {
+function PatientList({patients, setPatient, deletePatient}) {
 
     return (
         <div className='md:w-1/2 lg:w-3/5 px-5 md:h-screen overflow-y-scroll'>
@@ -19,6 +19,7 @@ function PatientList({patients, setPatient}) {
                             key={p.id}
                             patient={p}
                             setPatient={setPatient}
+                            deletePatient={deletePatient}
                         />)
                     )}
                 </>
