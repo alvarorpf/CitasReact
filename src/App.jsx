@@ -6,21 +6,13 @@ import PatientList from "./components/PatientList.jsx";
 
 function App() {
 
-    const [patients, setPatients] = useState([]);
+    const [patients, setPatients] = useState(JSON.parse(localStorage.getItem("patients")) ?? []);
     const [patient, setPatient] = useState({});
-
-    useEffect(()=>{
-        const getLocalStorage = () => {
-            const patientsStorage = JSON.parse(localStorage.getItem("patients")) ?? []
-            setPatients(patientsStorage)
-        }
-        getLocalStorage()
-    }, [])
 
     useEffect(()=>{
         localStorage.setItem("patients", JSON.stringify(patients))
     }, [patients])
-    const deletePatient = (id) => {
+    const deletePatient = id => {
         const patientsUpdate = patients.filter(patient => patient.id !== id)
         setPatients(patientsUpdate)
     }
